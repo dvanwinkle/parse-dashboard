@@ -6,6 +6,7 @@ const packageJson = require('package-json');
 var fs = require('fs');
 
 const currentVersionFeatures = require('../package.json').parseDashboardFeatures;
+const currentVersion = require('../package.json').version;
 
 var newFeaturesInLatestVersion = [];
 packageJson('parse-dashboard', 'latest').then(latestPackage => {
@@ -153,6 +154,14 @@ module.exports = function(config, allowInsecureHTTP) {
         " not found!");
     }
   }
+
+  app.get('/status', function(req, res) {
+    res.send({
+      timestamp: new Date(),
+      version: currentVersion,
+      environment: process.env.NODE_ENV || 'development'
+    });
+  });
 
   // For every other request, go to index.html. Let client-side handle the rest.
   app.get('/*', function(req, res) {
