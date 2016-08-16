@@ -1,5 +1,4 @@
 FROM node:4.4.2
-EXPOSE 4040
 WORKDIR /src
 ADD . /src
 RUN cd /src \
