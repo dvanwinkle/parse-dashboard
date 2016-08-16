@@ -8,5 +8,4 @@ RUN cd /src \
  && npm cache clear \
  && rm -rf ~/.npm \
  && rm -rf /var/lib/apt/lists/*
-RUN ["npm", "run", "build"]
 CMD ["npm", "run", "start"]
